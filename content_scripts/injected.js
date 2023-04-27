@@ -63,12 +63,10 @@ window.GoogleMeetsEffectsOrganizedInjected = false
 const inject_gmeet_effects_organized = () => {
     console.log(stylesheet_loaded, the_extension_id);
     const i = setInterval(() => {
-        // don't double-inject
         if (window.GoogleMeetsEffectsOrganizedInjected) {
+            console.log("already injected")
             clearInterval(i);
-        }
-
-        if (stylesheet_loaded && the_extension_id) {
+        } else if (stylesheet_loaded && the_extension_id) {
             const filters_section_div = document.querySelector('[data-section-label="Filters"]')
             const new_effects_section_div = document.querySelector('[data-section-label="New"]')
 
@@ -77,9 +75,7 @@ const inject_gmeet_effects_organized = () => {
                 clearInterval(i);
 
                 const filter_div_map = {}
-
                 filters_section_div.style = "display: flex; flex-direction: column;"
-
                 const all_children = Array.from(filters_section_div.children).concat(Array.from(new_effects_section_div?.children || []))
 
                 // put the filter divs in a map so we can look them up later
@@ -89,8 +85,6 @@ const inject_gmeet_effects_organized = () => {
                     filter_div_map[filter_div.querySelector('[role="tooltip"]').innerHTML] = filter_div;
                     // filter_div.remove()
                 })
-
-                console.log(filter_div_map)
 
                 const filter_group_map = {
                     "full scenes": [
