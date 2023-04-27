@@ -1,4 +1,6 @@
-const DEBUG = false;
+let DEBUG = false;
+document.addEventListener('return_debug_mode', e => {DEBUG = e.detail.data;});
+window.dispatchEvent(new CustomEvent('check_debug_mode', { detail: null }));
 
 // append an iframe so we can re-enable console.log
 // using its console.log
@@ -68,6 +70,7 @@ const inject_gmeet_effects_organized = () => {
 
         if (stylesheet_loaded && the_extension_id) {
             const filters_section_div = document.querySelector('[data-section-label="Filters"]')
+            const new_effects_section_div = document.querySelector('[data-section-label="New"]')
 
             if (filters_section_div) {
                 window.GoogleMeetsEffectsOrganizedInjected = true
@@ -77,13 +80,17 @@ const inject_gmeet_effects_organized = () => {
 
                 filters_section_div.style = "display: flex; flex-direction: column;"
 
+                const all_children = Array.from(filters_section_div.children).concat(Array.from(new_effects_section_div?.children || []))
+
                 // put the filter divs in a map so we can look them up later
-                Array.from(filters_section_div.children).filter(e => {
+                Array.from(all_children).filter(e => {
                     return e.tagName === "DIV";
                 }).forEach(filter_div => {
                     filter_div_map[filter_div.querySelector('[role="tooltip"]').innerHTML] = filter_div;
                     // filter_div.remove()
                 })
+
+                console.log(filter_div_map)
 
                 const filter_group_map = {
                     "full scenes": [
@@ -169,7 +176,7 @@ const inject_gmeet_effects_organized = () => {
 }
 
 // get chrome extension's ID
-document.addEventListener('extension_id', e => {
+document.addEventListener('return_extension_id', e => {
     const extension_id = `chrome-extension://${e.detail.data}`;
 
     // inject when we have the extension's ID
@@ -178,7 +185,7 @@ document.addEventListener('extension_id', e => {
 
 // chrome extension's ID
 window.dispatchEvent(
-    new CustomEvent('get_extension_id', { detail: null })
+    new CustomEvent('check_extension_id', { detail: null })
 );
 
 

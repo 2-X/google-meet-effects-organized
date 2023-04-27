@@ -32,6 +32,10 @@ chrome.storage.local.get(
 );
 
 // when the extension asks for the id, give it!
-window.addEventListener("get_extension_id", () => {
-    send_custom_event("extension_id", chrome.runtime.id);
+window.addEventListener("check_extension_id", () => {
+    send_custom_event("return_extension_id", chrome.runtime.id);
 });
+
+window.addEventListener("check_debug_mode", () => {
+    send_custom_event("return_debug_mode", !chrome.runtime.getManifest().update_url);
+})
