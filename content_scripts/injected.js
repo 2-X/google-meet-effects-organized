@@ -58,20 +58,14 @@ const remove_event_listeners = () => {
     eventListeners = [];
 }
 
-window.GoogleMeetsEffectsOrganizedInjected = false
-
 const inject_gmeet_effects_organized = () => {
     console.log(stylesheet_loaded, the_extension_id);
     const i = setInterval(() => {
-        if (window.GoogleMeetsEffectsOrganizedInjected) {
-            console.log("already injected")
-            clearInterval(i);
-        } else if (stylesheet_loaded && the_extension_id) {
+        if (stylesheet_loaded && the_extension_id) {
             const filters_section_div = document.querySelector('[data-section-label="Filters"]')
             const new_effects_section_div = document.querySelector('[data-section-label="New"]')
 
             if (filters_section_div) {
-                window.GoogleMeetsEffectsOrganizedInjected = true
                 clearInterval(i);
 
                 const filter_div_map = {}
@@ -114,6 +108,7 @@ const inject_gmeet_effects_organized = () => {
                         "Turkey",
                     ],
                     "3d “masks”": [
+                        "Mustache cowboy",
                         "Log head",
                         "Cyberpunk helmet",
                         "Cat glasses",
@@ -136,6 +131,8 @@ const inject_gmeet_effects_organized = () => {
                         "Jellyfish",
                         "Fireflies",
                         "Cool sunglasses",
+                        "Silent-disco hat.",
+                        "Pride rainbow heart",
                     ],
                 }
 
