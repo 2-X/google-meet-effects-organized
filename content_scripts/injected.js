@@ -86,6 +86,8 @@ const inject_gmeet_effects_organized = () => {
                         "Office bunny",
                         "Ramadan moon",
                         "Fries",
+                        "Lifelike dog",
+                        "Fuzzy cat",
                     ],
                     "“annoying orange”-esque": [
                         "Spooky cat",
@@ -131,7 +133,7 @@ const inject_gmeet_effects_organized = () => {
                         "Jellyfish",
                         "Fireflies",
                         "Cool sunglasses",
-                        "Silent-disco hat.",
+                        "Silent-disco hat",
                         "Pride rainbow heart",
                     ],
                 }
