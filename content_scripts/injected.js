@@ -110,6 +110,7 @@ const inject_gmeet_effects_organized = () => {
                         "Turkey",
                     ],
                     "3d “masks”": [
+                        "Ready for the beach",
                         "Mustache cowboy",
                         "Log head",
                         "Cyberpunk helmet",
